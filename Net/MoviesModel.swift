@@ -7,25 +7,27 @@
 import Foundation
 
 struct MoviesModel: Codable {
-    let adult: Bool
-    let backdropPath: String
-    let belongsToCollection: JSONNull?
-    let budget: Int
-    let genres: [Genre]
-    let homepage: String
-    let id: Int
-    let imdbID, originalLanguage, originalTitle, overview: String
-    let popularity: Double
-    let posterPath: String
-    let productionCompanies: [ProductionCompany]
-    let productionCountries: [ProductionCountry]
-    let releaseDate: String
-    let revenue, runtime: Int
-    let spokenLanguages: [SpokenLanguage]
-    let status, tagline, title: String
-    let video: Bool
-    let voteAverage: Double
-    let voteCount: Int
+    let adult: Bool?
+    let backdropPath: String?
+    let belongsToCollection: BelongsToConection?
+    let budget: Int?
+    let genres: [Genre]?
+    let homepage: String?
+    let id: Int?
+    let imdbID, originalLanguage, originalTitle, overview: String?
+    let popularity: Double?
+    let posterPath: String?
+    let productionCompanies: [ProductionCompany]?
+    let productionCountries: [ProductionCountry]?
+    let releaseDate: String?
+    let revenue, runtime: Int?
+    let spokenLanguages: [SpokenLanguage]?
+    let status, tagline, title: String?
+    let video: Bool?
+    let voteAverage: Double?
+    let voteCount: Int?
+    let statusCode: Int?
+    let statusMessage: String?
 
     enum CodingKeys: String, CodingKey {
         case adult
@@ -45,20 +47,33 @@ struct MoviesModel: Codable {
         case status, tagline, title, video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        case statusCode = "status_code"
+        case statusMessage = "status_message"
+    }
+}
+
+struct BelongsToConection: Codable {
+    let id : Int?
+    let name, posterPath, backropPath : String?
+    
+    enum CodignKeys: String, CodingKey {
+        case id, name
+        case posterPath = "poster_path"
+        case backrdropPath = "backrop_path"
     }
 }
 
 
 struct Genre: Codable {
-    let id: Int
-    let name: String
+    let id: Int?
+    let name: String?
 }
 
 
 struct ProductionCompany: Codable {
-    let id: Int
+    let id: Int?
     let logoPath: String?
-    let name, originCountry: String
+    let name, originCountry: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -70,7 +85,7 @@ struct ProductionCompany: Codable {
 
 
 struct ProductionCountry: Codable {
-    let iso3166_1, name: String
+    let iso3166_1, name: String?
 
     enum CodingKeys: String, CodingKey {
         case iso3166_1 = "iso_3166_1"
@@ -80,7 +95,7 @@ struct ProductionCountry: Codable {
 
 
 struct SpokenLanguage: Codable {
-    let englishName, iso639_1, name: String
+    let englishName, iso639_1, name: String?
 
     enum CodingKeys: String, CodingKey {
         case englishName = "english_name"

@@ -6,46 +6,56 @@
 //
 
 import UIKit
+import Alamofire
 
-class ViewController: UIViewController {
+
+class ViewController {
     
     @IBOutlet weak var nTable:UITableView!
     
-    var dataList = [MoviesModel]()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        nTable.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        
-        URLSession.shared.dataTask(with: URLRequest(url: URL(string: "https://api.themoviedb.org/3/movie/550?api_key=469821b988270d2366e546a380e03332"))){
-            {data,req.error} in
-            
-            do{
-                let result = JSONDecoder().decode(MoviesModel.self, from: data!)
-                DispatchQueue.main.async {
-                    self.dataList = MoviesModel.MoviesModel
-                    self.nTable.reloadData()
-                }
-            }catch{
-                
-            }
-        }.resume()
-        
-    }
-
-
-}
-
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-        cell.onBind(data: dataList(indexPath.row))
-        return cell
-    }
+    private var apiKey = "469821b988270d2366e546a380e03332"
+    fileprivate var baseUrl = ""
+    private let messageOfError = "I'm sorry, we couldn't do this"
     
     
-}
+    typealias moviesModelCallBack = (_ moviesModel: MoviesModel?, _ status: Bool, _ message: String) -> Void
+        var moviesModelCallBack: moviesModelCallBack?
+    
+    init(baseUrl: String) {
+            self.baseUrl = baseUrl
+        }
+    
+    
+    
+    
+    func getMoviesModelWith(movieId: String) {
+           let url = "\(self.baseUrl)\(movieId)\(apiKey)"
+           print("URL: \(url)")
+           AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response {
+               (responseData) in
+               guard let data = responseData.data else {
+                   self.moviesModelCallBack?(nil, false, self.messageOfError)
+                   return
+               }
+               do {
+                   let movieModel = try JSONDecoder().decode(MoviesModel.self, from: data)
+                   print(movieModel)
+                   
+                   if movieModel.statusCode == nil {
+                       self.moviesModelCallBack?(movieModel, true, "")
+                   } else {
+                       let errorMessage = movieModel.statusMessage ?? self.messageOfError
+                       self.moviesModelCallBack?(nil, false, errorMessage)
+                   }
+               } catch {
+                   self.moviesModelCallBack?(nil, false, error.localizedDescription)
+                   print("ERROR DECODING: \(error.localizedDescription)")
+               }
+           }
+       }
+       
+       func moviesModelCompletionHandler(callBack: @escaping moviesModelCallBack) {
+           self.moviesModelCallBack = callBack
+       }
+       
+   }
