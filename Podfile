@@ -7,5 +7,5 @@ target 'Net' do
 
   # Pods for Net
   pod 'Alamofire'
-
+  pod 'Kingfisher'
 end
