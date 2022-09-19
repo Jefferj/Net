@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,7 +30,7 @@
                             <constraint firstAttribute="height" constant="50" id="Gmk-cz-uu8"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QkC-to-tXw">
@@ -43,7 +44,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vote" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8G-e5-gQi">
                         <rect key="frame" x="143" y="73" width="28" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STH-jK-ocy">
@@ -52,10 +53,11 @@
                             <constraint firstAttribute="width" constant="97" id="b7V-EZ-Vwn"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="m4i-gC-HNX" secondAttribute="bottom" constant="-2" id="1Yz-Xk-cWu"/>
                     <constraint firstAttribute="bottomMargin" secondItem="n8G-e5-gQi" secondAttribute="bottom" constant="29" id="4dh-8a-h5X"/>
@@ -82,8 +84,8 @@
             <connections>
                 <outlet property="movieDate" destination="STH-jK-ocy" id="U5z-tY-Bac"/>
                 <outlet property="moviePoster" destination="m4i-gC-HNX" id="4xp-Hk-KaC"/>
-                <outlet property="movieTitle" destination="JeP-bf-5bD" id="26X-2h-LcG"/>
-                <outlet property="movieVote" destination="n8G-e5-gQi" id="tg1-lW-J4S"/>
+                <outlet property="movieTitle" destination="JeP-bf-5bD" id="roc-WU-MiZ"/>
+                <outlet property="movieVote" destination="n8G-e5-gQi" id="3gW-QF-VcA"/>
             </connections>
             <point key="canvasLocation" x="160.1449275362319" y="94.084821428571431"/>
         </tableViewCell>
@@ -91,5 +93,8 @@
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

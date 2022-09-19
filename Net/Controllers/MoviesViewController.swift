@@ -1,5 +1,5 @@
 //
-//  MoviesTableViewController.swift
+//  MoviesViewController.swift
 //  Net
 //
 //  Created by Jefferson Naranjo rodríguez on 18/09/22.
@@ -62,16 +62,7 @@ extension MoviesViewController: UITableViewDataSource {
 }
 
 extension MoviesViewController: UITableViewDelegate{
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//       if indexPath.row == viewModel.results.count - 5 {
-//            guard !isLoading else {
-//                return
-//            }
-//        }
-//       page += 1
-//       viewModel.loadPopularMovies(page: page)
-//   }
-//
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedResults = viewModel.results[indexPath.row]
